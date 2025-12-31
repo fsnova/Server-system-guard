@@ -1,0 +1,14 @@
+services:
+  bot-guard:
+    container_name: Server-guard
+    build: .
+    image: ghcr.io/fsnova/server-guard-bot:latest
+    environment:
+      - TZ=Asia/Tehran
+    env_file: .env
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+    cap_add:
+      - NET_RAW
+    privileged: true
