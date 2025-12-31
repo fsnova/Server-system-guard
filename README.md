@@ -64,14 +64,18 @@ nano docker-compose.yml
 ```yaml
 services:
   bot-guard:
-    container_name: server-guard
+    container_name: Server-guard
+    build: .
     image: ghcr.io/fsnova/server-guard-bot:latest
-    env_file: .env
     environment:
       - TZ=Asia/Tehran
+    env_file: .env
     volumes:
       - ./data:/data
     restart: unless-stopped
+    cap_add:
+      - NET_RAW
+    privileged: true
 ```
 
 ---
@@ -105,7 +109,6 @@ docker compose up -d
 اگر بار دوم OK شد → ignore
 
 وقتی بعداً کامل OK شد → پیام ✅ OK
->>>>>>> 5cbe653 (release v1.6)
 ---
 
 ## 🛠 Developer
